@@ -43,23 +43,10 @@ public class ArticleController {
         return Result.success(true, CodeEnum.SUCCESS, articleService.getHotArticle(size));
     }
 
-    /**
-     * 获取最新文章
-     * @return 最新文章的集合
-     * */
     @GetMapping("/new")
     public Result getNew(){
         int size = 5;
         return Result.success(true, CodeEnum.SUCCESS, articleService.getNewArticle(size));
-    }
-
-    /**
-     * 首页 文章归档
-     * @return 档案
-     * */
-    @PostMapping("/listArchives")
-    public Result listArchives(){
-        return Result.success(true, CodeEnum.SUCCESS, articleService.getListArchives());
     }
 
 

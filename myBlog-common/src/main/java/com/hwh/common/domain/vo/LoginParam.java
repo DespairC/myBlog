@@ -6,14 +6,13 @@ import lombok.NoArgsConstructor;
 
 /**
  * @author HwH
- * @date 2021/9/13 15:12
+ * @date 2021/9/13 21:02
  * @description
  */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Archives {
-    private Integer year;
-    private Integer month;
-    private Integer count;
+public class LoginParam {
+    private String account;
+    private String password;
 }

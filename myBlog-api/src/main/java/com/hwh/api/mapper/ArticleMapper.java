@@ -1,7 +1,6 @@
 package com.hwh.api.mapper;
 
 import com.hwh.common.domain.dto.Article;
-import com.hwh.common.domain.vo.Archives;
 import com.hwh.common.domain.vo.ArticleVo;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
@@ -46,10 +45,4 @@ public interface ArticleMapper {
      * @return 文章的集合
      * */
     List<Article> getNewArticle(@Param("size") int size);
-
-    /**
-     * 首页 文章归档
-     * @return 档案
-     * */
-    List<Archives> getListArchives();
 }
