@@ -32,7 +32,10 @@ public enum CodeEnum {
 
     //登录异常
     LOGIN_VERIFY_CODE_NOT_CORRECT(10007,"验证码错误"),
-    ACCOUNT_PWD_NULL_EXISTS(10008,"账户不存在或密码错误");
+    ACCOUNT_PWD_NULL_EXISTS(10008,"账户不存在或密码错误"),
+    NO_LOGIN(10009,"未登录"),
+    SESSION_TIME_OUT(10010,"会话超时"),
+    NO_PERMISSION(100011,"无访问权限");
 
 
     /**

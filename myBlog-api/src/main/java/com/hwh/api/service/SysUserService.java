@@ -1,9 +1,7 @@
 package com.hwh.api.service;
 
 import com.hwh.common.domain.dto.SysUser;
-import org.apache.ibatis.annotations.Param;
-
-import java.util.List;
+import com.hwh.common.util.Result;
 
 /**
  * @author HwH
@@ -16,5 +14,13 @@ public interface SysUserService {
      * @param id 用户id
      * @return 用户列表
      */
-    SysUser getUserById(@Param("id") Long id);
+    SysUser getUserById(Long id);
+
+    /**
+     * 根据 token 获得用户信息
+     * @param token token
+     * @return 用户信息
+     * */
+    Result getUserByToken(String token);
+
 }
