@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
  * @description 文章接口
  */
 @RestController
+@RequestMapping("/articles")
 public class ArticleController {
     private ArticleService articleService;
 
@@ -21,8 +22,16 @@ public class ArticleController {
         this.articleService = articleService;
     }
 
-    @PostMapping("/articles")
+    @PostMapping("/")
     public Result articles(@RequestBody PageParam pageParam){
         return Result.success(true, CodeEnum.SUCCESS, articleService.getArticle(pageParam));
     }
+
+    @GetMapping("/hot")
+    public Result hot(){
+        int size = 3;
+        return Result.success(true, CodeEnum.SUCCESS, articleService.getHotArticle(size));
+    }
+
+
 }

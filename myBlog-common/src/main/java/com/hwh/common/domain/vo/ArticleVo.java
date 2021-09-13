@@ -1,5 +1,6 @@
 package com.hwh.common.domain.vo;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.hwh.common.domain.dto.ArticleBody;
 import com.hwh.common.domain.dto.Category;
 import lombok.AllArgsConstructor;
@@ -16,13 +17,14 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class ArticleVo {
     private Long id;
-    private int commentCounts;
+    private Integer commentCounts;
     private String summary;
     private String title;
-    private int viewCounts;
-    private int weight;
+    private Integer viewCounts;
+    private Integer weight;
 
     /**
      * 创建时间

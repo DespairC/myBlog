@@ -14,14 +14,14 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class Article {
     private Long id;
-    private int commentCounts;
+    private Integer commentCounts;
     private Long createDate;
     private String summary;
     private String title;
-    private int viewCounts;
-    private int weight;
+    private Integer viewCounts;
+    private Integer weight;
     private Long authorId;
     private Long bodyId;
-    private int categoryId;
+    private Integer categoryId;
 
 }

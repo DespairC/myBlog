@@ -3,6 +3,7 @@ package com.hwh.api.service;
 import com.hwh.common.domain.dto.Article;
 import com.hwh.common.domain.vo.ArticleVo;
 import com.hwh.common.domain.vo.PageParam;
+import com.hwh.common.util.Result;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -21,4 +22,9 @@ public interface ArticleService {
      * */
     List<ArticleVo> getArticle(@Param("pageParam") PageParam pageParam);
 
-}
+    /**
+     * 获取热门文章
+     * @param size 热门文章数量
+     * @return 文章的集合
+     * */
+    List<ArticleVo> getHotArticle(int size);}

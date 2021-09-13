@@ -11,6 +11,7 @@ import com.hwh.common.domain.vo.ArticleVo;
 import com.hwh.common.domain.vo.PageParam;
 import com.hwh.common.domain.vo.TagVo;
 import com.hwh.common.exception.ErrorException;
+import com.hwh.common.util.Result;
 import com.hwh.common.util.TimeUtil;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -74,6 +75,11 @@ public class ArticleServiceImpl implements ArticleService {
         }
         return copyList(articleMapper.getArticle(pageParam.getPage(), pageParam.getPageSize()),
                 true , false, true);
+    }
+
+    @Override
+    public List<ArticleVo> getHotArticle(int size) {
+        return copyList(articleMapper.getHotArticle(size),false, false, false);
     }
 
 }

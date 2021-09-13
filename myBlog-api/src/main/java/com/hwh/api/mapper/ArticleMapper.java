@@ -1,6 +1,7 @@
 package com.hwh.api.mapper;
 
 import com.hwh.common.domain.dto.Article;
+import com.hwh.common.domain.vo.ArticleVo;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
@@ -29,4 +30,12 @@ public interface ArticleMapper {
      * @return 查询的文章
      * */
     Article getArticleById(@Param("id") int id);
+
+    /**
+     * 获取热门文章
+     * @param size 热门文章数量
+     * @return 文章的集合
+     * */
+    List<Article> getHotArticle(@Param("size") int size);
+
 }

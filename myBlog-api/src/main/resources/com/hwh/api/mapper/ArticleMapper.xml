@@ -13,4 +13,11 @@
         where id = #{id}
     </select>
 
+    <select id="getHotArticle" resultType="com.hwh.common.domain.dto.Article">
+        select id, title, create_date
+        from article
+        order by view_counts DESC
+        limit #{size}
+    </select>
+
 </mapper>
