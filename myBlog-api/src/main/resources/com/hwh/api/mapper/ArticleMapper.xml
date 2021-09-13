@@ -27,4 +27,18 @@
         limit #{size}
     </select>
 
+    <select id="getListArchives" resultType="com.hwh.common.domain.vo.Archives">
+        SELECT YEAR(
+            FROM_UNIXTIME( create_date / 1000 )) AS YEAR,
+            MONTH (
+            FROM_UNIXTIME( create_date / 1000 )) AS MONTH,
+            count(*) AS count
+        FROM
+            article
+        GROUP BY
+            YEAR,MONTH
+        ORDER BY
+            YEAR,MONTH DESC
+    </select>
+
 </mapper>

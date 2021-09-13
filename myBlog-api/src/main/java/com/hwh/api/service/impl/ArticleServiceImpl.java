@@ -7,6 +7,7 @@ import com.hwh.api.service.TagService;
 import com.hwh.common.domain.dto.Article;
 import com.hwh.common.domain.dto.SysUser;
 import com.hwh.common.domain.enums.CodeEnum;
+import com.hwh.common.domain.vo.Archives;
 import com.hwh.common.domain.vo.ArticleVo;
 import com.hwh.common.domain.vo.PageParam;
 import com.hwh.common.domain.vo.TagVo;
@@ -85,5 +86,10 @@ public class ArticleServiceImpl implements ArticleService {
     @Override
     public List<ArticleVo> getNewArticle(int size) {
         return copyList(articleMapper.getNewArticle(size), false, false, false);
+    }
+
+    @Override
+    public List<Archives> getListArchives() {
+        return articleMapper.getListArchives();
     }
 }

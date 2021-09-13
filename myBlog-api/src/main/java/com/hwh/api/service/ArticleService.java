@@ -1,6 +1,7 @@
 package com.hwh.api.service;
 
 import com.hwh.common.domain.dto.Article;
+import com.hwh.common.domain.vo.Archives;
 import com.hwh.common.domain.vo.ArticleVo;
 import com.hwh.common.domain.vo.PageParam;
 import com.hwh.common.util.Result;
@@ -35,4 +36,10 @@ public interface ArticleService {
      * @return 文章的集合
      * */
     List<ArticleVo> getNewArticle(int size);
+
+    /**
+     * 首页 文章归档
+     * @return 档案
+     * */
+    List<Archives> getListArchives();
 }
