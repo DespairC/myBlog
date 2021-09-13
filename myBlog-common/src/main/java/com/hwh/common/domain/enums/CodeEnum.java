@@ -19,6 +19,9 @@ public enum CodeEnum {
     // 5xx
     INTERNAL_SERVER_ERROR(500,"Internal Server Error（服务器出错）"),
 
+    // 9xx
+    SYSTEM_ERROR(999, "系统异常"),
+
     // 参数错误
     NULL_PARAM(10001,"参数不能为空"),
     PARAM_PATTERN_INVALID(10002,"参数格式错误"),

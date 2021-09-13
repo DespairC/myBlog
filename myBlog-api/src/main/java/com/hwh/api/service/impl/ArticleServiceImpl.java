@@ -6,9 +6,11 @@ import com.hwh.api.service.SysUserService;
 import com.hwh.api.service.TagService;
 import com.hwh.common.domain.dto.Article;
 import com.hwh.common.domain.dto.SysUser;
+import com.hwh.common.domain.enums.CodeEnum;
 import com.hwh.common.domain.vo.ArticleVo;
 import com.hwh.common.domain.vo.PageParam;
 import com.hwh.common.domain.vo.TagVo;
+import com.hwh.common.exception.ErrorException;
 import com.hwh.common.util.TimeUtil;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -67,6 +69,9 @@ public class ArticleServiceImpl implements ArticleService {
 
     @Override
     public List<ArticleVo> getArticle(PageParam pageParam) {
+        if(pageParam == null){
+            throw new ErrorException(CodeEnum.NULL_PARAM);
+        }
         return copyList(articleMapper.getArticle(pageParam.getPage(), pageParam.getPageSize()),
                 true , false, true);
     }
