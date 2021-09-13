@@ -55,6 +55,12 @@ public class LoginServiceImpl implements LoginService {
         return Result.success(true, CodeEnum.SUCCESS, token);
     }
 
+    @Override
+    public Result logout(String token) {
+        redisUtils.del(token);
+        return Result.success(true, CodeEnum.SUCCESS, null);
+    }
+
     public static void main(String[] args) {
         System.out.println(DigestUtils.md5Hex("123456" + SALT));
     }

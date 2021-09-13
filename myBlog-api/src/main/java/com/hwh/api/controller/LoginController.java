@@ -4,10 +4,7 @@ import com.hwh.api.service.LoginService;
 import com.hwh.common.domain.vo.LoginParam;
 import com.hwh.common.util.Result;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @author HwH
@@ -15,15 +12,18 @@ import org.springframework.web.bind.annotation.RestController;
  * @description
  */
 @RestController
-@RequestMapping("/login")
 public class LoginController {
 
     @Autowired
     private LoginService loginService;
 
-    @PostMapping
+    @PostMapping("/login")
     public Result login(@RequestBody LoginParam loginParam){
         return loginService.login(loginParam);
     }
 
+    @GetMapping("/logout")
+    public Result logout(@RequestHeader("Authorization") String token){
+        return loginService.logout(token);
+    }
 }

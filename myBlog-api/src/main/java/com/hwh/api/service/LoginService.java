@@ -16,5 +16,12 @@ public interface LoginService {
      */
     Result login(LoginParam loginParam);
 
+    /**
+     * 注销
+     * @param token token
+     * @return 结果
+     * */
+    Result logout(String token);
+
 
 }
