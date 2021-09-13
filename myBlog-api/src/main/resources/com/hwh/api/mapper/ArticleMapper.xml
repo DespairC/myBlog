@@ -20,4 +20,11 @@
         limit #{size}
     </select>
 
+    <select id="getNewArticle" resultType="com.hwh.common.domain.dto.Article">
+        select id, title, create_date
+        from article
+        order by create_date DESC
+        limit #{size}
+    </select>
+
 </mapper>

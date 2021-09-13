@@ -38,4 +38,11 @@ public interface ArticleMapper {
      * */
     List<Article> getHotArticle(@Param("size") int size);
 
+
+    /**
+     * 获取热门文章
+     * @param size 热门文章数量
+     * @return 文章的集合
+     * */
+    List<Article> getNewArticle(@Param("size") int size);
 }

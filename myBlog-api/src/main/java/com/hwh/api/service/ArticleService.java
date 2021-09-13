@@ -27,4 +27,12 @@ public interface ArticleService {
      * @param size 热门文章数量
      * @return 文章的集合
      * */
-    List<ArticleVo> getHotArticle(int size);}
+    List<ArticleVo> getHotArticle(int size);
+
+    /**
+     * 获取热门文章
+     * @param size 热门文章数量
+     * @return 文章的集合
+     * */
+    List<ArticleVo> getNewArticle(int size);
+}

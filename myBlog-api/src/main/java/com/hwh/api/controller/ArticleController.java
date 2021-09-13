@@ -22,16 +22,33 @@ public class ArticleController {
         this.articleService = articleService;
     }
 
+    /**
+     * 获取文章列表
+     * @param pageParam 文章数和起始页码
+     * @return 返回文章列表
+     * */
     @PostMapping("/")
     public Result articles(@RequestBody PageParam pageParam){
         return Result.success(true, CodeEnum.SUCCESS, articleService.getArticle(pageParam));
     }
 
+
+    /**
+     * 获取热门文章
+     * @return 热门文章的集合
+     * */
     @GetMapping("/hot")
     public Result hot(){
         int size = 3;
         return Result.success(true, CodeEnum.SUCCESS, articleService.getHotArticle(size));
     }
+
+    @GetMapping("/new")
+    public Result getNew(){
+        int size = 5;
+        return Result.success(true, CodeEnum.SUCCESS, articleService.getNewArticle(size));
+    }
+
 
 
 }

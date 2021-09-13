@@ -82,4 +82,8 @@ public class ArticleServiceImpl implements ArticleService {
         return copyList(articleMapper.getHotArticle(size),false, false, false);
     }
 
+    @Override
+    public List<ArticleVo> getNewArticle(int size) {
+        return copyList(articleMapper.getNewArticle(size), false, false, false);
+    }
 }
