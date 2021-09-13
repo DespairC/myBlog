@@ -1,8 +1,11 @@
 package com.hwh.api.controller;
 
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.hwh.api.service.ArticleService;
+import com.hwh.common.domain.enums.CodeEnum;
+import com.hwh.common.domain.vo.PageParam;
+import com.hwh.common.util.Result;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @author HwH
@@ -10,7 +13,16 @@ import org.springframework.web.bind.annotation.RestController;
  * @description 文章接口
  */
 @RestController
-@RequestMapping("/articles/")
 public class ArticleController {
+    private ArticleService articleService;
 
+    @Autowired
+    public ArticleController(ArticleService articleService) {
+        this.articleService = articleService;
+    }
+
+    @PostMapping("/articles")
+    public Result articles(@RequestBody PageParam pageParam){
+        return new Result(true, CodeEnum.SUCCESS, articleService.getArticle(pageParam));
+    }
 }

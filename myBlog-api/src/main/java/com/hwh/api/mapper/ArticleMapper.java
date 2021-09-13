@@ -1,6 +1,7 @@
 package com.hwh.api.mapper;
 
-import com.hwh.common.domain.pojo.Article;
+import com.hwh.common.domain.dto.Article;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -13,13 +14,19 @@ import java.util.List;
  */
 @Repository
 public interface ArticleMapper {
+
     /**
      * 获取文章
+     * @param page 目录页面
+     * @param pageSize 页文章数
+     * @return 文章的集合
      * */
-    List<Article> getArticle();
+    List<Article> getArticle(@Param("page") int page, @Param("pageSize") int pageSize);
 
     /**
      * 查询文章
+     * @param id 文章id
+     * @return 查询的文章
      * */
-    List<Article> queryArticle();
+    Article getArticleById(@Param("id") int id);
 }

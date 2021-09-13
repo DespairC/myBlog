@@ -14,7 +14,22 @@ public enum CodeEnum {
     FORBIDDEN(403, "FORBIDDEN(禁止访问)"),
     NOT_FOUND(404, "NOT FOUND(资源未找到)"),
     METHOD_NOT_ALLOWED(405,"METHOD NOT ALLOWED"),
-    UNKNOWN_ERROR(406, "发生未知错误");
+    UNKNOWN_ERROR(406, "发生未知错误"),
+
+    // 5xx
+    INTERNAL_SERVER_ERROR(500,"Internal Server Error（服务器出错）"),
+
+    // 参数错误
+    NULL_PARAM(10001,"参数不能为空"),
+    PARAM_PATTERN_INVALID(10002,"参数格式错误"),
+    PARAM_NOT_IDEAL(10003,"未查找到信息"),
+    FILE_NOT_SUPPORT(10004,"文件格式错误"),
+    FILE_UPLOAD_FAIL(10005,"文件上传失败"),
+    CANT_NOT_CONVERT_PARAM(10006,"类型转化失败"),
+
+    //登录异常
+    LOGIN_VERIFY_CODE_NOT_CORRECT(10007,"验证码错误");
+
 
     /**
      * 状态码

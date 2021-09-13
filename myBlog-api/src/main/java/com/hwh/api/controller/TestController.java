@@ -1,6 +1,9 @@
 package com.hwh.api.controller;
 
+import com.hwh.api.mapper.ArticleMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -10,8 +13,11 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 public class TestController {
-    @GetMapping("/test")
+    @Autowired
+    private ArticleMapper articleMapper;
+
+    @PostMapping("/test")
     public String test(){
-        return "hello, HwH";
+        return articleMapper.getArticle(0,5).toString();
     }
 }

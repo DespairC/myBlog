@@ -1,7 +1,11 @@
 package com.hwh.common.domain.vo;
 
-import com.hwh.common.domain.pojo.ArticleBody;
-import com.hwh.common.domain.pojo.Category;
+import com.hwh.common.domain.dto.Article;
+import com.hwh.common.domain.dto.ArticleBody;
+import com.hwh.common.domain.dto.Category;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.List;
 
@@ -10,6 +14,9 @@ import java.util.List;
  * @date 2021/9/12 20:53
  * @description 前台展示的文章数据结构
  */
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class ArticleVo {
     private Long id;
     private int commentCounts;

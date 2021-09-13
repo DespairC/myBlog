@@ -1,18 +1,16 @@
-package com.hwh.api.mapper;
+package com.hwh.api.service;
 
 import com.hwh.common.domain.dto.SysUser;
 import org.apache.ibatis.annotations.Param;
-import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 /**
  * @author HwH
- * @date 2021/9/12 14:39
- * @description 用户mapper
+ * @date 2021/9/12 23:25
+ * @description 用户服务
  */
-@Repository
-public interface SysUserMapper {
+public interface SysUserService {
     /**
      * 根据用户id获取用户信息
      * @param id 用户id
