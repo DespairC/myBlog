@@ -31,7 +31,8 @@ public enum CodeEnum {
     CANT_NOT_CONVERT_PARAM(10006,"类型转化失败"),
 
     //登录异常
-    LOGIN_VERIFY_CODE_NOT_CORRECT(10007,"验证码错误");
+    LOGIN_VERIFY_CODE_NOT_CORRECT(10007,"验证码错误"),
+    ACCOUNT_PWD_NULL_EXISTS(10008,"账户不存在或密码错误");
 
 
     /**

@@ -10,4 +10,18 @@
         where id = #{id}
     </select>
 
+    <select id="getPasswordByAccount" resultType="com.hwh.common.domain.dto.SysUser">
+        select id
+            ,account,admin,avatar
+            ,create_date,deleted
+            ,email
+            ,last_login
+            ,mobile_phone_number
+            ,nickname
+            ,salt
+            ,status
+        from sys_user
+        where account = #{account} and password = #{password}
+    </select>
+
 </mapper>

@@ -19,4 +19,12 @@ public interface SysUserMapper {
      * @return 用户列表
      */
     SysUser getUserById(@Param("id") Long id);
+
+    /**
+     * 根据账号密码获取用户
+     * @param account 账号
+     * @param password 密码
+     * @return 用户
+     * */
+    SysUser getPasswordByAccount(@Param("account") String account, @Param("password") String password);
 }

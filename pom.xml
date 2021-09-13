@@ -37,6 +37,8 @@
         <lombok.version>1.18.20</lombok.version>
         <commons-lang3.version>3.12.0</commons-lang3.version>
         <aspect.version>1.9.6</aspect.version>
+        <jjwt.vesion>0.9.1</jjwt.vesion>
+        <commons-codec.version>1.15</commons-codec.version>
     </properties>
 
 
@@ -137,6 +139,20 @@
             <groupId>commons-collections</groupId>
             <artifactId>commons-collections</artifactId>
             <version>${commons-collections.version}</version>
+        </dependency>
+
+        <!-- jjwt -->
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt</artifactId>
+            <version>${jjwt.vesion}</version>
+        </dependency>
+
+        <!-- md5加密 -->
+        <dependency>
+            <groupId>commons-codec</groupId>
+            <artifactId>commons-codec</artifactId>
+            <version>${commons-codec.version}</version>
         </dependency>
 
     </dependencies>
