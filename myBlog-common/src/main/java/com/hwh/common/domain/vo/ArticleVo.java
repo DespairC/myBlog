@@ -1,6 +1,5 @@
 package com.hwh.common.domain.vo;
 
-import com.hwh.common.domain.dto.Article;
 import com.hwh.common.domain.dto.ArticleBody;
 import com.hwh.common.domain.dto.Category;
 import lombok.AllArgsConstructor;

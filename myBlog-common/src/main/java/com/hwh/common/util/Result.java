@@ -29,6 +29,10 @@ public class Result<T> {
         return new Result<T>(codeEnum, data);
     }
 
+    public static <T> Result<T> success (Boolean success, CodeEnum codeEnum, T data){
+        return new Result<T>(success, codeEnum, data);
+    }
+
     public static <T> Result<T> success (Integer code, String msg, T data){
         return new Result<T>(code, msg, data);
     }

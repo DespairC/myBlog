@@ -6,11 +6,13 @@ import com.hwh.common.domain.dto.Tag;
 import com.hwh.common.domain.enums.CodeEnum;
 import com.hwh.common.domain.vo.TagVo;
 import com.hwh.common.exception.ErrorException;
+import org.apache.commons.collections.CollectionUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -46,8 +48,17 @@ public class TagServiceImpl implements TagService {
         if(articleId == null){
             throw new ErrorException(CodeEnum.NULL_PARAM);
         }
-
         return copyList(tagMapper.getTagByArticleId(articleId));
+    }
+
+    @Override
+    public List<TagVo> getHotTag(int size) {
+        List<Long> hotIds = tagMapper.findHostTagIds(size);
+        if(CollectionUtils.isEmpty(hotIds)){
+            return Collections.EMPTY_LIST;
+        }
+
+        return copyList(tagMapper.getTagByTagIds(hotIds));
     }
 
 }

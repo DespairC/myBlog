@@ -23,6 +23,6 @@ public class ArticleController {
 
     @PostMapping("/articles")
     public Result articles(@RequestBody PageParam pageParam){
-        return new Result(true, CodeEnum.SUCCESS, articleService.getArticle(pageParam));
+        return Result.success(true, CodeEnum.SUCCESS, articleService.getArticle(pageParam));
     }
 }

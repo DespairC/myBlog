@@ -20,4 +20,19 @@ public interface TagMapper {
      * @return 标签列表
      * */
     List<Tag> getTagByArticleId(@Param("articleId") Long articleId);
+
+    /**
+     * 根据标签id列表获取标签
+     * @param tagIds 文章id列表
+     * @return 标签列表
+     * */
+    List<Tag> getTagByTagIds(@Param("tagIds") List<Long> tagIds);
+
+    /**
+     * 寻找热门标签
+     * @param size 热门标签数量
+     * @return 热门标签列表
+     * */
+    List<Long> findHostTagIds(@Param("size") int size);
+
 }

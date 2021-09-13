@@ -14,4 +14,21 @@
         </where>
     </select>
 
+    <select id="findHostTagIds" resultType="java.lang.Long">
+        select tag_id from article_tag
+        group by tag_id
+        order by count(1) DESC
+        limit #{size}
+    </select>
+
+    <select id="getTagByTagIds" parameterType="list" resultType="com.hwh.common.domain.dto.Tag">
+        select id, tag_name
+        from tag
+        where id in
+        <foreach collection="tagIds" item="tagId" separator="," open="(" close=")">
+            #{tagId}
+        </foreach>
+    </select>
+
+
 </mapper>
