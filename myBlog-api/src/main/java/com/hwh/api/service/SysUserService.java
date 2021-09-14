@@ -25,6 +25,13 @@ public interface SysUserService {
     Result getUserByToken(String token);
 
     /**
+     * 检查token是否存在
+     * @param token token
+     * @return 用户信息
+     * */
+    SysUser checkToken(String token);
+
+    /**
      * 根据账号密码获取用户
      * @param account 账号
      * @param password 密码

@@ -47,8 +47,9 @@ public class LoginInterceptor implements HandlerInterceptor {
             return false;
         }
 
-        if(sysUserService.getUserByToken(token) == null){
+        if(sysUserService.checkToken(token) == null){
             send(response, Result.error(CodeEnum.NO_LOGIN));
+            System.out.println("test");
             return false;
         }
 

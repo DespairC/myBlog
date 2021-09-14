@@ -75,4 +75,14 @@ public class SysUserServiceImpl implements SysUserService {
     public SysUser getUserByAccount(String account) {
         return sysUserMapper.getUserByAccount(account);
     }
+
+
+    @Override
+    public SysUser checkToken(String token) {
+        String userJson = (String) redisUtils.get(token);
+        if(ObjectUtils.isEmpty(userJson)){
+            return null;
+        }
+        return JSON.parseObject(userJson, SysUser.class);
+    }
 }
