@@ -61,4 +61,10 @@
         where account = #{account}
     </select>
 
+    <select id="findUserById" resultType="com.hwh.common.domain.vo.SysUserVo">
+        select id, nickname, avatar
+        from sys_user
+        where id = #{id}
+    </select>
+
 </mapper>

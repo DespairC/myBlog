@@ -6,6 +6,7 @@ import com.hwh.api.service.SysUserService;
 import com.hwh.common.domain.enums.CodeEnum;
 import com.hwh.common.domain.dto.SysUser;
 import com.hwh.common.domain.vo.LoginVo;
+import com.hwh.common.domain.vo.SysUserVo;
 import com.hwh.common.exception.ErrorException;
 import com.hwh.common.util.JWTUtils;
 import com.hwh.common.util.RedisUtils;
@@ -84,5 +85,11 @@ public class SysUserServiceImpl implements SysUserService {
             return null;
         }
         return JSON.parseObject(userJson, SysUser.class);
+    }
+
+    @Override
+    public SysUserVo findUserById(Long id) {
+        ;
+        return sysUserMapper.findUserById(id);
     }
 }

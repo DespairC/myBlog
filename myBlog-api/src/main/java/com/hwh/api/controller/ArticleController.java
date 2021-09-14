@@ -67,7 +67,7 @@ public class ArticleController {
      * @param id 文章id
      * @return 文章具体信息
      * */
-    @PostMapping("/view/{id}")
+    @GetMapping("/view/{id}")
     public Result findArticleById(@PathVariable("id") Long id){
         return Result.success(true, CodeEnum.SUCCESS, articleService.findArticleById(id));
     }

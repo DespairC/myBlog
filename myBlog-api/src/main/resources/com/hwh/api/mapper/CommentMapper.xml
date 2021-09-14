@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hwh.api.mapper.CommentMapper">
+
+    <select id="getCommentByArticleId" resultType="com.hwh.common.domain.dto.Comment">
+        select id
+            ,content
+            ,create_date
+            ,article_id
+            ,author_id
+            ,parent_id
+            ,to_uid
+            ,level
+        from comment
+        where author_id = #{articleId}
+    </select>
+
+    <select id="getCommentById" resultType="com.hwh.common.domain.dto.Comment">
+        select id
+             ,content
+             ,create_date
+             ,article_id
+             ,author_id
+             ,parent_id
+             ,to_uid
+             ,level
+        from comment
+        where parent_id = #{id} and level = 2
+    </select>
+</mapper>

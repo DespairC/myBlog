@@ -2,6 +2,7 @@ package com.hwh.api.mapper;
 
 import com.hwh.common.domain.dto.SysUser;
 import com.hwh.common.domain.vo.LoginParam;
+import com.hwh.common.domain.vo.SysUserVo;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
@@ -42,4 +43,11 @@ public interface SysUserMapper {
      * @return 主键id
      * */
     Long addUser(@Param("sysUser") SysUser sysUser);
+
+    /**
+     * 获取基本用户信息
+     * @param id 用户id
+     * @return 用户基本信息
+     * */
+    SysUserVo findUserById(Long id);
 }
