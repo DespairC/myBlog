@@ -27,7 +27,7 @@ public class ArticleController {
      * @param pageParam 文章数和起始页码
      * @return 返回文章列表
      * */
-    @PostMapping("/")
+    @PostMapping("")
     public Result articles(@RequestBody PageParam pageParam){
         return Result.success(true, CodeEnum.SUCCESS, articleService.getArticle(pageParam));
     }

@@ -32,4 +32,5 @@ public interface LoginService {
      * */
     Result register(@RequestBody LoginParam loginParam);
 
+
 }
