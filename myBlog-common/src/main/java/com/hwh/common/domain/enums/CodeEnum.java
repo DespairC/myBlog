@@ -35,7 +35,8 @@ public enum CodeEnum {
     ACCOUNT_PWD_NULL_EXISTS(10008,"账户不存在或密码错误"),
     NO_LOGIN(10009,"未登录"),
     SESSION_TIME_OUT(10010,"会话超时"),
-    NO_PERMISSION(100011,"无访问权限");
+    NO_PERMISSION(100011,"无访问权限"),
+    ACCOUNT_EXIST(10012,"账号已存在");
 
 
     /**

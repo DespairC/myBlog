@@ -4,6 +4,37 @@
 
 <mapper namespace="com.hwh.api.mapper.SysUserMapper">
 
+    <insert id="addUser" parameterType="com.hwh.common.domain.dto.SysUser" useGeneratedKeys="true" keyColumn="id">
+        <!-- selectKey将主键返回，需要再返回 -->
+        <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+            select LAST_INSERT_ID()
+        </selectKey>
+        insert into sys_user(account
+            ,admin
+            ,avatar
+            ,create_date
+            ,deleted
+            ,email
+            ,last_login
+            ,mobile_phone_number
+            ,nickname
+            ,password
+            ,salt
+            ,status)
+        values (#{sysUser.account}
+            ,#{sysUser.admin}
+            ,#{sysUser.avatar}
+            ,#{sysUser.createDate}
+            ,#{sysUser.deleted}
+            ,#{sysUser.email}
+            ,#{sysUser.lastLogin}
+            ,#{sysUser.mobilePhoneNumber}
+            ,#{sysUser.nickname}
+            ,#{sysUser.password}
+            ,#{sysUser.salt}
+            ,#{sysUser.status})
+    </insert>
+
     <select id="getUserById" resultType="com.hwh.common.domain.dto.SysUser">
         select *
         from sys_user
@@ -22,6 +53,12 @@
             ,status
         from sys_user
         where account = #{account} and password = #{password}
+    </select>
+
+    <select id="getUserByAccount" resultType="com.hwh.common.domain.dto.SysUser">
+        select id, nickname, account
+        from sys_user
+        where account = #{account}
     </select>
 
 </mapper>

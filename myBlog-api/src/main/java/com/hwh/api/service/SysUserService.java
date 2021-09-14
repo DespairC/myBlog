@@ -2,6 +2,7 @@ package com.hwh.api.service;
 
 import com.hwh.common.domain.dto.SysUser;
 import com.hwh.common.util.Result;
+import org.apache.ibatis.annotations.Param;
 
 /**
  * @author HwH
@@ -22,5 +23,27 @@ public interface SysUserService {
      * @return 用户信息
      * */
     Result getUserByToken(String token);
+
+    /**
+     * 根据账号密码获取用户
+     * @param account 账号
+     * @param password 密码
+     * @return 用户
+     * */
+    SysUser getPasswordByAccount(String account, String password);
+
+    /**
+         * 根据账号获取用户
+         * @param account 账号
+         * @return 用户
+         * */
+    SysUser getUserByAccount(String account);
+
+    /**
+     * 新增用户
+     * @param sysUser 用户信息
+     * @return 主键id
+     * */
+    Long addUser(SysUser sysUser);
 
 }

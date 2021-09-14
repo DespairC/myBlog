@@ -11,12 +11,9 @@ import com.hwh.common.util.JWTUtils;
 import com.hwh.common.util.RedisUtils;
 import com.hwh.common.util.Result;
 import org.apache.commons.lang3.ObjectUtils;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -51,7 +48,7 @@ public class SysUserServiceImpl implements SysUserService {
         }
         String userJson = (String) redisUtils.get(token);
         if(ObjectUtils.isEmpty(userJson)){
-            return Result.error(CodeEnum.NULL_PARAM);
+            return Result.error(CodeEnum.NO_LOGIN);
         }
         SysUser sysUser = JSON.parseObject(userJson, SysUser.class);
 
@@ -62,5 +59,20 @@ public class SysUserServiceImpl implements SysUserService {
         loginVo.setAvatar(sysUser.getAvatar());
 
         return Result.success(true, CodeEnum.SUCCESS, loginVo);
+    }
+
+    @Override
+    public SysUser getPasswordByAccount(String account, String password) {
+        return sysUserMapper.getPasswordByAccount(account, password);
+    }
+
+    @Override
+    public Long addUser(SysUser sysUser) {
+        return sysUserMapper.addUser(sysUser);
+    }
+
+    @Override
+    public SysUser getUserByAccount(String account) {
+        return sysUserMapper.getUserByAccount(account);
     }
 }
