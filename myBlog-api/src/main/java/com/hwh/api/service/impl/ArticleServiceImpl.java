@@ -1,10 +1,7 @@
 package com.hwh.api.service.impl;
 
 import com.hwh.api.mapper.ArticleMapper;
-import com.hwh.api.service.ArticleService;
-import com.hwh.api.service.CategoryService;
-import com.hwh.api.service.SysUserService;
-import com.hwh.api.service.TagService;
+import com.hwh.api.service.*;
 import com.hwh.common.domain.dto.Article;
 import com.hwh.common.domain.dto.ArticleBody;
 import com.hwh.common.domain.dto.Category;
@@ -35,13 +32,17 @@ public class ArticleServiceImpl implements ArticleService {
     private final SysUserService sysUserService;
     private final TagService tagService;
     private final CategoryService categoryService;
+    private final ThreadService threadService;
 
     @Autowired
-    public ArticleServiceImpl(ArticleMapper articleMapper, SysUserService sysUserService, TagService tagService, CategoryService categoryService) {
+    public ArticleServiceImpl(ArticleMapper articleMapper, SysUserService sysUserService
+            , TagService tagService, CategoryService categoryService
+            ,ThreadService threadService) {
         this.articleMapper = articleMapper;
         this.sysUserService = sysUserService;
         this.tagService = tagService;
         this.categoryService = categoryService;
+        this.threadService = threadService;
     }
 
     /**
@@ -110,6 +111,8 @@ public class ArticleServiceImpl implements ArticleService {
 
     @Override
     public ArticleVo findArticleById(Long id) {
-        return copy(articleMapper.getArticleById(id), true, true, true, true);
+        Article article = articleMapper.getArticleById(id);
+        threadService.updateViewCount(articleMapper, article);
+        return copy(article, true, true, true, true);
     }
 }

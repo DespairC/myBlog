@@ -59,4 +59,9 @@ public interface ArticleMapper {
      * @return 文章主体内容
      * */
     ArticleBody getArticleBodyById(@Param("articleId") Long articleId);
+
+    /**
+     * 更新文章
+     * */
+    void update(@Param("article") Article article);
 }

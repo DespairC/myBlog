@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hwh.api.mapper.ArticleMapper">
+    <update id="update">
+        update article
+        set comment_counts = #{article.commentCounts}
+        ,create_date = #{article.createDate}
+        ,summary = #{article.summary}
+        ,title = #{article.title}
+        ,view_counts = #{article.viewCounts}
+        ,weight = #{article.weight}
+        ,category_id = #{article.categoryId}
+        where id = #{article.id}
+    </update>
 
 
     <select id="getArticle" resultType="com.hwh.common.domain.dto.Article">
