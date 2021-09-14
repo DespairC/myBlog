@@ -2,8 +2,10 @@ package com.hwh.framework.handler;
 
 import com.alibaba.fastjson.JSON;
 import com.hwh.api.service.SysUserService;
+import com.hwh.common.domain.dto.SysUser;
 import com.hwh.common.domain.enums.CodeEnum;
 import com.hwh.common.util.Result;
+import com.hwh.common.util.UserThreadLocal;
 import com.sun.org.apache.regexp.internal.RE;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,11 +49,13 @@ public class LoginInterceptor implements HandlerInterceptor {
             return false;
         }
 
-        if(sysUserService.checkToken(token) == null){
+        SysUser sysUser = sysUserService.checkToken(token);
+        if(sysUser == null){
             send(response, Result.error(CodeEnum.NO_LOGIN));
-            System.out.println("test");
             return false;
         }
+
+        UserThreadLocal.put(sysUser);
 
         //放行
         return true;
@@ -60,5 +64,14 @@ public class LoginInterceptor implements HandlerInterceptor {
     private void send(HttpServletResponse response, Result result) throws IOException {
         response.setContentType("application/json;charset=utf-8");
         response.getWriter().print(JSON.toJSONString(result));
+    }
+
+    /**
+     * 在拦截器拦截的接口执行完毕后执行
+     * 移除ThreadLocal的储存，防止内存泄漏(因为这里值的储存是强引用)
+     * */
+    @Override
+    public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
+        UserThreadLocal.remove();
     }
 }
