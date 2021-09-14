@@ -2,9 +2,12 @@ package com.hwh.api.service.impl;
 
 import com.hwh.api.mapper.ArticleMapper;
 import com.hwh.api.service.ArticleService;
+import com.hwh.api.service.CategoryService;
 import com.hwh.api.service.SysUserService;
 import com.hwh.api.service.TagService;
 import com.hwh.common.domain.dto.Article;
+import com.hwh.common.domain.dto.ArticleBody;
+import com.hwh.common.domain.dto.Category;
 import com.hwh.common.domain.dto.SysUser;
 import com.hwh.common.domain.enums.CodeEnum;
 import com.hwh.common.domain.vo.Archives;
@@ -28,31 +31,43 @@ import java.util.List;
  */
 @Service
 public class ArticleServiceImpl implements ArticleService {
-    private ArticleMapper articleMapper;
-    private SysUserService sysUserService;
-    private TagService tagService;
+    private final ArticleMapper articleMapper;
+    private final SysUserService sysUserService;
+    private final TagService tagService;
+    private final CategoryService categoryService;
 
     @Autowired
-    public ArticleServiceImpl(ArticleMapper articleMapper, SysUserService sysUserService, TagService tagService) {
+    public ArticleServiceImpl(ArticleMapper articleMapper, SysUserService sysUserService, TagService tagService, CategoryService categoryService) {
         this.articleMapper = articleMapper;
         this.sysUserService = sysUserService;
         this.tagService = tagService;
+        this.categoryService = categoryService;
     }
 
     /**
      * 组装单个展示类
      * */
-    private ArticleVo copy(Article article,boolean isAuthor,boolean isBody,boolean isTags){
+    private ArticleVo copy(Article article,boolean isAuthor,boolean isBody,boolean isTags, boolean idCategory){
         ArticleVo articleVo = new ArticleVo();
         BeanUtils.copyProperties(article, articleVo);
+        //作者
         if (isAuthor) {
             SysUser sysUser = sysUserService.getUserById(article.getAuthorId());
             articleVo.setAuthor(sysUser.getNickname());
         }
+        //内容
+        if (isBody){
+            articleVo.setArticleBody(articleMapper.getArticleBodyById(article.getId()));
+        }
+        //创建日期
         articleVo.setCreateDate(TimeUtil.longToDate(article.getCreateDate()));
+        //标签
         if (isTags){
-            List<TagVo> tags = tagService.getTagByArticleId(article.getId());
-            articleVo.setTags(tags);
+            articleVo.setTags(tagService.getTagByArticleId(article.getId()));
+        }
+        //类别
+        if (idCategory){
+            articleVo.setCategory(categoryService.findCategoryById(article.getId()));
         }
         return articleVo;
     }
@@ -60,10 +75,10 @@ public class ArticleServiceImpl implements ArticleService {
     /**
      * 组装集合展示类
      * */
-    private List<ArticleVo> copyList(List<Article> records,boolean isAuthor,boolean isBody,boolean isTags){
+    private List<ArticleVo> copyList(List<Article> records,boolean isAuthor,boolean isBody,boolean isTags, boolean idCategory){
         List<ArticleVo> articleVoList = new ArrayList<>();
         for (Article article : records) {
-            articleVoList.add(copy(article, isAuthor, isBody, isTags));
+            articleVoList.add(copy(article, isAuthor, isBody, isTags, idCategory));
         }
         return articleVoList;
     }
@@ -75,21 +90,26 @@ public class ArticleServiceImpl implements ArticleService {
             throw new ErrorException(CodeEnum.NULL_PARAM);
         }
         return copyList(articleMapper.getArticle(pageParam.getPage(), pageParam.getPageSize()),
-                true , false, true);
+                true , false, true, false);
     }
 
     @Override
     public List<ArticleVo> getHotArticle(int size) {
-        return copyList(articleMapper.getHotArticle(size),false, false, false);
+        return copyList(articleMapper.getHotArticle(size),false, false, false, false);
     }
 
     @Override
     public List<ArticleVo> getNewArticle(int size) {
-        return copyList(articleMapper.getNewArticle(size), false, false, false);
+        return copyList(articleMapper.getNewArticle(size), false, false, false, false);
     }
 
     @Override
     public List<Archives> getListArchives() {
         return articleMapper.getListArchives();
+    }
+
+    @Override
+    public ArticleVo findArticleById(Long id) {
+        return copy(articleMapper.getArticleById(id), true, true, true, true);
     }
 }

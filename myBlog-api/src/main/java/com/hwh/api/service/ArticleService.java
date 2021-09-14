@@ -6,6 +6,8 @@ import com.hwh.common.domain.vo.ArticleVo;
 import com.hwh.common.domain.vo.PageParam;
 import com.hwh.common.util.Result;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
 
@@ -42,4 +44,11 @@ public interface ArticleService {
      * @return 档案
      * */
     List<Archives> getListArchives();
+
+    /**
+     * 查询文章
+     * @param id 文章id
+     * @return 文章具体信息
+     * */
+    ArticleVo findArticleById(Long id);
 }

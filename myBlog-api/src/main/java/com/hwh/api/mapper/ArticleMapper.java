@@ -1,6 +1,7 @@
 package com.hwh.api.mapper;
 
 import com.hwh.common.domain.dto.Article;
+import com.hwh.common.domain.dto.ArticleBody;
 import com.hwh.common.domain.vo.Archives;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
@@ -29,7 +30,7 @@ public interface ArticleMapper {
      * @param id 文章id
      * @return 查询的文章
      * */
-    Article getArticleById(@Param("id") int id);
+    Article getArticleById(@Param("id") Long id);
 
     /**
      * 获取热门文章
@@ -51,4 +52,11 @@ public interface ArticleMapper {
      * @return 档案
      * */
     List<Archives> getListArchives();
+
+    /**
+     * 获取文章主体内容
+     * @param articleId 文章id
+     * @return 文章主体内容
+     * */
+    ArticleBody getArticleBodyById(@Param("articleId") Long articleId);
 }

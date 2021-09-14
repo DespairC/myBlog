@@ -62,6 +62,15 @@ public class ArticleController {
         return Result.success(true, CodeEnum.SUCCESS, articleService.getListArchives());
     }
 
+    /**
+     * 查询文章
+     * @param id 文章id
+     * @return 文章具体信息
+     * */
+    @PostMapping("/view/{id}")
+    public Result findArticleById(@PathVariable("id") Long id){
+        return Result.success(true, CodeEnum.SUCCESS, articleService.findArticleById(id));
+    }
 
 
 }

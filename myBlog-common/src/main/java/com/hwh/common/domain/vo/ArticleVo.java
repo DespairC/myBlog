@@ -43,9 +43,9 @@ public class ArticleVo {
      * */
     private List<TagVo> tags;
     /**
-     * 类别集合
+     * 类别
      * */
-    private List<Category> categories;
+    private Category category;
 
 
 }
