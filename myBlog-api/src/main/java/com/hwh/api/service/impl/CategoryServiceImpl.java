@@ -3,9 +3,12 @@ package com.hwh.api.service.impl;
 import com.hwh.api.mapper.CategoryMapper;
 import com.hwh.api.service.CategoryService;
 import com.hwh.common.domain.dto.Category;
+import com.hwh.common.domain.vo.CategoryVo;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -20,8 +23,28 @@ public class CategoryServiceImpl implements CategoryService {
     private CategoryMapper categoryMapper;
 
 
-    @Override
-    public Category findCategoryById(Long id) {
-        return categoryMapper.findCategoryById(id);
+    private CategoryVo copy(Category category){
+        CategoryVo categoryVo = new CategoryVo();
+        BeanUtils.copyProperties(category, categoryVo);
+        return categoryVo;
     }
+
+    private List<CategoryVo> copyList(List<Category> categoryList){
+        List<CategoryVo> list = new ArrayList<>();
+        for (Category category : categoryList) {
+            list.add(copy(category));
+        }
+        return list;
+    }
+
+    @Override
+    public CategoryVo findCategoryById(Long id) {
+        return copy(categoryMapper.findCategoryById(id));
+    }
+
+    @Override
+    public List<CategoryVo> findAll() {
+        return copyList(categoryMapper.findAll());
+    }
+
 }

@@ -21,4 +21,10 @@ public interface CategoryMapper {
      */
     Category findCategoryById(@Param("id") Long id);
 
+    /**
+     * 获取所有类别
+     * @return 所有类别列表
+     * */
+    List<Category> findAll();
+
 }

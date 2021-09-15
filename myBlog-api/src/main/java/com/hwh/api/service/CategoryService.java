@@ -1,7 +1,6 @@
 package com.hwh.api.service;
 
-import com.hwh.common.domain.dto.Category;
-import org.apache.ibatis.annotations.Param;
+import com.hwh.common.domain.vo.CategoryVo;
 
 import java.util.List;
 
@@ -17,5 +16,11 @@ public interface CategoryService {
      * @param id 类别id
      * @return 类别信息
      */
-    Category findCategoryById(Long id);
+    CategoryVo findCategoryById(Long id);
+
+    /**
+     * 获取所有类别
+     * @return 所有类别列表
+     * */
+    List<CategoryVo> findAll();
 }

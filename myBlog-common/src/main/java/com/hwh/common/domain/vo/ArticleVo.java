@@ -45,7 +45,7 @@ public class ArticleVo {
     /**
      * 类别
      * */
-    private Category category;
+    private CategoryVo categoryVo;
 
 
 }
