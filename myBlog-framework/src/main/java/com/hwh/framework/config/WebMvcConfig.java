@@ -23,7 +23,8 @@ public class WebMvcConfig implements WebMvcConfigurer {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(loginInterceptor)
-                .addPathPatterns("/test");
+                .addPathPatterns("/test")
+                .addPathPatterns("/comment/create/change");
     }
 
     @Override

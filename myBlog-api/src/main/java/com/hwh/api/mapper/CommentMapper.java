@@ -27,4 +27,10 @@ public interface CommentMapper {
      * @return 子评论集合
      * */
     List<Comment> getCommentById(@Param("id") Long id);
+
+    /**
+     * 新增评论
+     * @param comment 评论类
+     * */
+    void addComment(@Param("comment") Comment comment);
 }

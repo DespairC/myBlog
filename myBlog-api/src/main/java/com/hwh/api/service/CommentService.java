@@ -1,7 +1,9 @@
 package com.hwh.api.service;
 
 
+import com.hwh.common.domain.vo.CommentParam;
 import com.hwh.common.domain.vo.CommentVo;
+import com.hwh.common.util.Result;
 
 import java.util.List;
 
@@ -18,4 +20,10 @@ public interface CommentService {
      * @return 评论集合
      * */
     List<CommentVo> getCommentByArticleId(Long articleId);
+
+    /**
+     * 新增评论
+     * @param commentParam 评论参数类
+     * */
+    Result comment(CommentParam commentParam);
 }

@@ -4,8 +4,11 @@ import com.hwh.api.mapper.CommentMapper;
 import com.hwh.api.service.CommentService;
 import com.hwh.api.service.SysUserService;
 import com.hwh.common.domain.dto.Comment;
+import com.hwh.common.domain.enums.CodeEnum;
+import com.hwh.common.domain.vo.CommentParam;
 import com.hwh.common.domain.vo.CommentVo;
 import com.hwh.common.domain.vo.SysUserVo;
+import com.hwh.common.util.Result;
 import com.hwh.common.util.TimeUtil;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -64,5 +67,25 @@ public class CommentServiceImpl implements CommentService {
     @Override
     public List<CommentVo> getCommentByArticleId(Long articleId) {
         return copyList(commentMapper.getCommentByArticleId(articleId));
+    }
+
+    @Override
+    public Result comment(CommentParam commentParam) {
+        Comment comment = new Comment();
+        comment.setArticleId(commentParam.getArticleId());
+        comment.setContent(commentParam.getContent());
+        comment.setAuthorId(commentParam.getArticleId());
+        Long parent = commentParam.getParent();
+        comment.setParentId(parent == null? 0 : parent);
+        if(parent == null || parent == 0){
+            comment.setLevel(1);
+        }else {
+            comment.setLevel(2);
+        }
+        Long toUserId = commentParam.getToUserId();
+        comment.setToUid(toUserId == null? 0 : toUserId);
+        comment.setCreateDate(System.currentTimeMillis());
+        commentMapper.addComment(comment);
+        return Result.success(true, CodeEnum.SUCCESS , null);
     }
 }
