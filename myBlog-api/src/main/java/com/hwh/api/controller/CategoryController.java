@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @description
  */
 @RestController
-@RequestMapping("/category")
+@RequestMapping("/categorys")
 public class CategoryController {
 
     @Autowired

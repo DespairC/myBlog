@@ -30,5 +30,10 @@
         </foreach>
     </select>
 
+    <select id="findAll" resultType="com.hwh.common.domain.dto.Tag">
+        select id, tag_name
+        from tag
+    </select>
+
 
 </mapper>

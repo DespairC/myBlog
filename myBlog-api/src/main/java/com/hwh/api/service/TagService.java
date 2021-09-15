@@ -24,4 +24,10 @@ public interface TagService {
      * @return 热门标签列表
      * */
     List<TagVo> getHotTag(int size);
+
+    /**
+     * 获得所有标签
+     * @return 所有标签集合
+     * */
+    List<TagVo> findAll();
 }

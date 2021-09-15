@@ -35,4 +35,10 @@ public interface TagMapper {
      * */
     List<Long> findHostTagIds(@Param("size") int size);
 
+    /**
+     * 获得所有标签
+     * @return 所有标签集合
+     * */
+    List<Tag> findAll();
+
 }

@@ -14,13 +14,18 @@ import org.springframework.web.bind.annotation.RestController;
  * @description
  */
 @RestController
-@RequestMapping("/tags/")
+@RequestMapping("/tags")
 public class TagController {
 
     @Autowired
     private TagService tagService;
 
-    @GetMapping("hot")
+    @GetMapping
+    public Result findAll(){
+        return Result.success(true, CodeEnum.SUCCESS, tagService.findAll());
+    }
+
+    @GetMapping("/hot")
     public Result getHot(){
         int size = 6;
         return Result.success(true, CodeEnum.SUCCESS, tagService.getHotTag(size));
