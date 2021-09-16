@@ -22,6 +22,6 @@ public class Article {
     private Integer weight;
     private Long authorId;
     private Long bodyId;
-    private Integer categoryId;
+    private Long categoryId;
 
 }

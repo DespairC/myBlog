@@ -1,13 +1,10 @@
 package com.hwh.api.service;
 
-import com.hwh.common.domain.dto.Article;
 import com.hwh.common.domain.vo.Archives;
 import com.hwh.common.domain.vo.ArticleVo;
-import com.hwh.common.domain.vo.PageParam;
-import com.hwh.common.util.Result;
+import com.hwh.common.domain.vo.param.ArticleParam;
+import com.hwh.common.domain.vo.param.PageParam;
 import org.apache.ibatis.annotations.Param;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
 
@@ -51,4 +48,11 @@ public interface ArticleService {
      * @return 文章具体信息
      * */
     ArticleVo findArticleById(Long id);
+
+    /**
+     * 发布文章
+     * @param articleParam 文章参数
+     * @return 文章id
+     * */
+    ArticleVo publishArticle(ArticleParam articleParam);
 }

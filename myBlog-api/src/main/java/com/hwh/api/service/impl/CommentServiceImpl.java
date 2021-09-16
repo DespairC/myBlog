@@ -5,7 +5,7 @@ import com.hwh.api.service.CommentService;
 import com.hwh.api.service.SysUserService;
 import com.hwh.common.domain.dto.Comment;
 import com.hwh.common.domain.enums.CodeEnum;
-import com.hwh.common.domain.vo.CommentParam;
+import com.hwh.common.domain.vo.param.CommentParam;
 import com.hwh.common.domain.vo.CommentVo;
 import com.hwh.common.domain.vo.SysUserVo;
 import com.hwh.common.util.Result;

@@ -1,7 +1,7 @@
 package com.hwh.api.service;
 
 
-import com.hwh.common.domain.vo.CommentParam;
+import com.hwh.common.domain.vo.param.CommentParam;
 import com.hwh.common.domain.vo.CommentVo;
 import com.hwh.common.util.Result;
 

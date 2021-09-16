@@ -89,7 +89,6 @@ public class SysUserServiceImpl implements SysUserService {
 
     @Override
     public SysUserVo findUserById(Long id) {
-        ;
         return sysUserMapper.findUserById(id);
     }
 }

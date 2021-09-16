@@ -5,12 +5,10 @@ import com.hwh.api.service.LoginService;
 import com.hwh.api.service.SysUserService;
 import com.hwh.common.domain.dto.SysUser;
 import com.hwh.common.domain.enums.CodeEnum;
-import com.hwh.common.domain.vo.LoginParam;
-import com.hwh.common.exception.ErrorException;
+import com.hwh.common.domain.vo.param.LoginParam;
 import com.hwh.common.util.JWTUtils;
 import com.hwh.common.util.RedisUtils;
 import com.hwh.common.util.Result;
-import lombok.SneakyThrows;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -92,11 +90,11 @@ public class LoginServiceImpl implements LoginService {
         sysUser.setEmail("");
 
         //新增用户
-        Long id = sysUserService.addUser(sysUser);
-        sysUser.setId(id);
+        sysUserService.addUser(sysUser);
+        sysUser.setId(sysUser.getId());
 
         //登录token
-        String token = JWTUtils.createToken(id);
+        String token = JWTUtils.createToken(sysUser.getId());
         redisUtils.set(token, JSON.toJSONString(sysUser), 1, TimeUnit.DAYS);
         return Result.success(true, CodeEnum.SUCCESS, token);
     }

@@ -54,14 +54,16 @@ public interface ArticleMapper {
     List<Archives> getListArchives();
 
     /**
-     * 获取文章主体内容
-     * @param articleId 文章id
-     * @return 文章主体内容
+     * 更新文章
+     * @param article 文章信息
+     * @return 返回1成功
      * */
-    ArticleBody getArticleBodyById(@Param("articleId") Long articleId);
+    Integer update(@Param("article") Article article);
 
     /**
-     * 更新文章
+     * 插入新文章
+     * @param article 文章信息
+     * @return 返回1成功
      * */
-    void update(@Param("article") Article article);
+    Integer insert(Article article);
 }

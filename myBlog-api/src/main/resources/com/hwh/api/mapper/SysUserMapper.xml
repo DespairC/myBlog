@@ -4,11 +4,7 @@
 
 <mapper namespace="com.hwh.api.mapper.SysUserMapper">
 
-    <insert id="addUser" parameterType="com.hwh.common.domain.dto.SysUser" useGeneratedKeys="true" keyColumn="id">
-        <!-- selectKey将主键返回，需要再返回 -->
-        <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
-            select LAST_INSERT_ID()
-        </selectKey>
+    <insert id="addUser" parameterType="com.hwh.common.domain.dto.SysUser" useGeneratedKeys="true" keyProperty="id">
         insert into sys_user(account
             ,admin
             ,avatar
@@ -21,18 +17,19 @@
             ,password
             ,salt
             ,status)
-        values (#{sysUser.account}
-            ,#{sysUser.admin}
-            ,#{sysUser.avatar}
-            ,#{sysUser.createDate}
-            ,#{sysUser.deleted}
-            ,#{sysUser.email}
-            ,#{sysUser.lastLogin}
-            ,#{sysUser.mobilePhoneNumber}
-            ,#{sysUser.nickname}
-            ,#{sysUser.password}
-            ,#{sysUser.salt}
-            ,#{sysUser.status})
+        values (
+             #{account}
+            ,#{admin}
+            ,#{avatar}
+            ,#{createDate}
+            ,#{deleted}
+            ,#{email}
+            ,#{lastLogin}
+            ,#{mobilePhoneNumber}
+            ,#{nickname}
+            ,#{password}
+            ,#{salt}
+            ,#{status})
     </insert>
 
     <select id="getUserById" resultType="com.hwh.common.domain.dto.SysUser">

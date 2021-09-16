@@ -2,7 +2,8 @@ package com.hwh.api.controller;
 
 import com.hwh.api.service.ArticleService;
 import com.hwh.common.domain.enums.CodeEnum;
-import com.hwh.common.domain.vo.PageParam;
+import com.hwh.common.domain.vo.param.ArticleParam;
+import com.hwh.common.domain.vo.param.PageParam;
 import com.hwh.common.util.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -70,6 +71,16 @@ public class ArticleController {
     @GetMapping("/view/{id}")
     public Result findArticleById(@PathVariable("id") Long id){
         return Result.success(true, CodeEnum.SUCCESS, articleService.findArticleById(id));
+    }
+
+    /**
+     * 发布文章
+     * @param articleParam 文章参数
+     * @return 文章id
+     * */
+    @PostMapping("/publish")
+    public Result publish(@RequestBody ArticleParam articleParam){
+        return Result.success(true, CodeEnum.SUCCESS, articleService.publishArticle(articleParam));
     }
 
 

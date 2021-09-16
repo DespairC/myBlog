@@ -1,15 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hwh.api.mapper.ArticleMapper">
+    <insert id="insert" parameterType="com.hwh.common.domain.dto.SysUser" useGeneratedKeys="true" keyProperty="id">
+        insert into article(comment_counts
+            ,create_date
+            ,summary
+            ,title
+            ,view_counts
+            ,weight
+            ,author_id
+            ,body_id
+            ,category_id)
+        values(#{commentCounts}
+              ,#{createDate}
+              ,#{summary}
+              ,#{title}
+              ,#{viewCounts}
+              ,#{weight}
+              ,#{authorId}
+              ,#{bodyId}
+              ,#{categoryId})
+    </insert>
+
     <update id="update">
         update article
         set comment_counts = #{article.commentCounts}
+        ,author_id = #{article.authorId}
         ,create_date = #{article.createDate}
         ,summary = #{article.summary}
         ,title = #{article.title}
         ,view_counts = #{article.viewCounts}
         ,weight = #{article.weight}
         ,category_id = #{article.categoryId}
+        ,body_id = #{article.bodyId}
+
         where id = #{article.id}
     </update>
 
@@ -59,12 +83,6 @@
             YEAR,MONTH
         ORDER BY
             YEAR,MONTH DESC
-    </select>
-
-    <select id="getArticleBodyById" resultType="com.hwh.common.domain.dto.ArticleBody">
-        select id, content, content_html
-        from article_body
-        where article_id = #{articleId}
     </select>
 
 </mapper>

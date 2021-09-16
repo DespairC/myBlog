@@ -2,7 +2,7 @@ package com.hwh.api.controller;
 
 import com.hwh.api.service.CommentService;
 import com.hwh.common.domain.enums.CodeEnum;
-import com.hwh.common.domain.vo.CommentParam;
+import com.hwh.common.domain.vo.param.CommentParam;
 import com.hwh.common.util.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

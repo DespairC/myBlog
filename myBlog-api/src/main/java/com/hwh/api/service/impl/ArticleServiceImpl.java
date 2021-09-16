@@ -1,18 +1,26 @@
 package com.hwh.api.service.impl;
 
+import com.hwh.api.mapper.ArticleBodyMapper;
 import com.hwh.api.mapper.ArticleMapper;
+import com.hwh.api.mapper.ArticleTagMapper;
 import com.hwh.api.service.*;
 import com.hwh.common.domain.dto.Article;
+import com.hwh.common.domain.dto.ArticleBody;
+import com.hwh.common.domain.dto.ArticleTag;
 import com.hwh.common.domain.dto.SysUser;
 import com.hwh.common.domain.enums.CodeEnum;
 import com.hwh.common.domain.vo.Archives;
 import com.hwh.common.domain.vo.ArticleVo;
-import com.hwh.common.domain.vo.PageParam;
+import com.hwh.common.domain.vo.TagVo;
+import com.hwh.common.domain.vo.param.ArticleParam;
+import com.hwh.common.domain.vo.param.PageParam;
 import com.hwh.common.exception.ErrorException;
 import com.hwh.common.util.TimeUtil;
+import com.hwh.common.util.UserThreadLocal;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,16 +37,21 @@ public class ArticleServiceImpl implements ArticleService {
     private final TagService tagService;
     private final CategoryService categoryService;
     private final ThreadService threadService;
+    private final ArticleBodyMapper articleBodyMapper;
+    private final ArticleTagMapper articleTagMapper;
 
     @Autowired
     public ArticleServiceImpl(ArticleMapper articleMapper, SysUserService sysUserService
             , TagService tagService, CategoryService categoryService
-            ,ThreadService threadService) {
+            ,ThreadService threadService, ArticleBodyMapper articleBodyMapper
+            ,ArticleTagMapper articleTagMapper) {
         this.articleMapper = articleMapper;
         this.sysUserService = sysUserService;
         this.tagService = tagService;
         this.categoryService = categoryService;
         this.threadService = threadService;
+        this.articleBodyMapper = articleBodyMapper;
+        this.articleTagMapper = articleTagMapper;
     }
 
     /**
@@ -54,7 +67,7 @@ public class ArticleServiceImpl implements ArticleService {
         }
         //内容
         if (isBody){
-            articleVo.setArticleBody(articleMapper.getArticleBodyById(article.getId()));
+            articleVo.setArticleBody(articleBodyMapper.getArticleBodyById(article.getId()));
         }
         //创建日期
         articleVo.setCreateDate(TimeUtil.longToDate(article.getCreateDate()));
@@ -110,5 +123,54 @@ public class ArticleServiceImpl implements ArticleService {
         Article article = articleMapper.getArticleById(id);
         threadService.updateViewCount(articleMapper, article);
         return copy(article, true, true, true, true);
+    }
+
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public ArticleVo publishArticle(ArticleParam articleParam) {
+
+        //获取本地用户信息
+        SysUser sysUser = UserThreadLocal.get();
+
+        Article article = new Article();
+        article.setAuthorId(sysUser.getId());
+        article.setTitle(articleParam.getTitle());
+        article.setViewCounts(0);
+        article.setCreateDate(System.currentTimeMillis());
+        article.setWeight(0);
+        article.setCommentCounts(0);
+        article.setSummary(articleParam.getSummary());
+        article.setCategoryId(articleParam.getCategory().getId());
+
+        //插入文章
+        articleMapper.insert(article);
+
+        //插入标签
+        List<TagVo> tagVoList = articleParam.getTags();
+        if(tagVoList != null){
+            for (TagVo tagVo : tagVoList) {
+                ArticleTag articleTag = new ArticleTag();
+                articleTag.setArticleId(article.getId());
+                articleTag.setTagId(tagVo.getId());
+                articleTagMapper.insert(articleTag);
+            }
+        }
+
+        //插入文章主体内容
+        ArticleBody articleBody = new ArticleBody();
+        BeanUtils.copyProperties(articleParam.getBody(),articleBody);
+        articleBody.setArticleId(article.getId());
+        articleBodyMapper.insert(articleBody);
+
+
+        //更新内容id
+        article.setBodyId(articleBody.getId());
+        articleMapper.update(article);
+
+        //返回文章id
+        ArticleVo articleVo = new ArticleVo();
+        articleVo.setId(article.getId());
+
+        return articleVo;
     }
 }

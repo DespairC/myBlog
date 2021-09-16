@@ -1,4 +1,4 @@
-package com.hwh.common.domain.vo;
+package com.hwh.common.domain.vo.param;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

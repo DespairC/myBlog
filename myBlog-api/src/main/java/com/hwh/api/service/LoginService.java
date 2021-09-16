@@ -1,8 +1,7 @@
 package com.hwh.api.service;
 
-import com.hwh.common.domain.vo.LoginParam;
+import com.hwh.common.domain.vo.param.LoginParam;
 import com.hwh.common.util.Result;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestBody;
 
 /**

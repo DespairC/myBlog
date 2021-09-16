@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--MyBatis配置文件-->
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hwh.api.mapper.ArticleBodyMapper">
+    <insert id="insert" parameterType="com.hwh.common.domain.dto.ArticleBody" useGeneratedKeys="true" keyProperty="id">
+        insert into article_body(
+                content, content_html, article_id)
+                values (#{content}, #{contentHtml}, #{articleId})
+    </insert>
+
+    <select id="getArticleBodyById" resultType="com.hwh.common.domain.dto.ArticleBody">
+        select id, content, content_html
+        from article_body
+        where article_id = #{articleId}
+    </select>
+
+
+
+</mapper>
