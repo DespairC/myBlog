@@ -39,7 +39,11 @@
 
 
     <select id="getArticle" resultType="com.hwh.common.domain.dto.Article">
-        select * from article limit #{page}, #{pageSize}
+        select id, comment_counts, create_date, summary, title, view_counts
+            ,weight, author_id, body_id, category_id
+        from article
+        order by weight DESC, create_date DESC
+        limit #{page}, #{pageSize}
     </select>
 
     <select id="getArticleById" resultType="com.hwh.common.domain.dto.Article">
