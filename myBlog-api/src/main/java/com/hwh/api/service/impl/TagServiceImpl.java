@@ -30,6 +30,9 @@ public class TagServiceImpl implements TagService {
     }
 
     private TagVo copy(Tag tag){
+        if(tag == null){
+            return null;
+        }
         TagVo tagVo = new TagVo();
         BeanUtils.copyProperties(tag, tagVo);
         return tagVo;
@@ -71,4 +74,8 @@ public class TagServiceImpl implements TagService {
         return copyList(tagMapper.findAllDetail());
     }
 
+    @Override
+    public TagVo findDetail(Long id) {
+        return copy(tagMapper.findDetail(id));
+    }
 }

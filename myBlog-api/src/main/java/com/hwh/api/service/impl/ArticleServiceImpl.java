@@ -58,6 +58,9 @@ public class ArticleServiceImpl implements ArticleService {
      * 组装单个展示类
      * */
     private ArticleVo copy(Article article,boolean isAuthor,boolean isBody,boolean isTags, boolean idCategory){
+        if(article == null){
+            return null;
+        }
         ArticleVo articleVo = new ArticleVo();
         BeanUtils.copyProperties(article, articleVo);
         //作者

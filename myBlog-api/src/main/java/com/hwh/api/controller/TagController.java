@@ -5,6 +5,7 @@ import com.hwh.common.domain.enums.CodeEnum;
 import com.hwh.common.util.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -48,5 +49,13 @@ public class TagController {
         return Result.success(true, CodeEnum.SUCCESS, tagService.findAllDetail());
     }
 
+    /**
+     * 获得所有标签细节
+     * @return 所有标签集合细节
+     * */
+    @GetMapping("/detail/{id}")
+    public Result findDetailById(@PathVariable("id") Long id){
+        return Result.success(true, CodeEnum.SUCCESS, tagService.findDetail(id));
+    }
 
 }

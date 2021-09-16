@@ -36,4 +36,11 @@ public interface TagService {
      * @return 所有标签集合细节
      * */
     List<TagVo> findAllDetail();
+
+    /**
+     * 获得标签细节
+     * @param id 标签id
+     * @return 标签集合细节
+     * */
+    TagVo findDetail(Long id);
 }

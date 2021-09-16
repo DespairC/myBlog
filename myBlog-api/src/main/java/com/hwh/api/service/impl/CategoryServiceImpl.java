@@ -24,6 +24,9 @@ public class CategoryServiceImpl implements CategoryService {
 
 
     private CategoryVo copy(Category category){
+        if(category == null){
+            return null;
+        }
         CategoryVo categoryVo = new CategoryVo();
         BeanUtils.copyProperties(category, categoryVo);
         return categoryVo;
@@ -52,4 +55,8 @@ public class CategoryServiceImpl implements CategoryService {
         return copyList(categoryMapper.selectList());
     }
 
+    @Override
+    public CategoryVo findDetail(Long id) {
+        return copy(categoryMapper.findCategoryById(id));
+    }
 }

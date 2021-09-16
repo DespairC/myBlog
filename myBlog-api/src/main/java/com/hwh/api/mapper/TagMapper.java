@@ -47,5 +47,11 @@ public interface TagMapper {
      * */
     List<Tag> findAllDetail();
 
+    /**
+     * 获得标签细节
+     * @param id 标签id
+     * @return 所有标签细节
+     * */
+    Tag findDetail(@Param("id") Long id);
 
 }

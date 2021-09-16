@@ -31,4 +31,11 @@ public interface CategoryService {
      * @return 所有类别细节列表
      * */
     List<CategoryVo> findAllDetail();
+
+    /**
+     * 获取类别细节
+     * @param id 类别id
+     * @return 类别细节集合
+     * */
+    CategoryVo findDetail(Long id);
 }

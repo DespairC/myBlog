@@ -5,6 +5,7 @@ import com.hwh.common.domain.enums.CodeEnum;
 import com.hwh.common.util.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -32,10 +33,21 @@ public class CategoryController {
 
     /**
      * 获取所有类别细节
-     *
+     * @return 所有类别细节集合
      * */
     @GetMapping("/detail")
     public Result findAllDetail(){
         return Result.success(true, CodeEnum.SUCCESS, categoryService.findAllDetail());
     }
+
+    /**
+     * 获取类别细节
+     * @param id 类别id
+     * @return 类别细节集合
+     * */
+    @GetMapping("/detail/{id}")
+    public Result findDetail(@PathVariable("id") Long id){
+        return Result.success(true, CodeEnum.SUCCESS, categoryService.findDetail(id));
+    }
+
 }

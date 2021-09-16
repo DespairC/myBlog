@@ -36,6 +36,9 @@ public class CommentServiceImpl implements CommentService {
     }
 
     private CommentVo copy(Comment comment){
+        if(comment == null){
+            return null;
+        }
         CommentVo commentVo = new CommentVo();
         BeanUtils.copyProperties(comment, commentVo);
         //创建时间
