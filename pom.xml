@@ -38,6 +38,7 @@
         <commons-lang3.version>3.12.0</commons-lang3.version>
         <aspect.version>1.9.6</aspect.version>
         <jjwt.vesion>0.9.1</jjwt.vesion>
+        <druid.version>1.2.6</druid.version>
         <commons-codec.version>1.15</commons-codec.version>
         <qiniu.version>7.7.0</qiniu.version>
     </properties>
@@ -160,6 +161,13 @@
             <groupId>com.qiniu</groupId>
             <artifactId>qiniu-java-sdk</artifactId>
             <version>${qiniu.version}</version>
+        </dependency>
+
+        <!-- druid -->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>druid-spring-boot-starter</artifactId>
+            <version>${druid.version}</version>
         </dependency>
 
     </dependencies>
