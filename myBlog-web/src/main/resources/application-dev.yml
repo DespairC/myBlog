@@ -20,6 +20,14 @@ spring:
     port: 6379
     connect-timeout: 5000
 
+  # 七牛云配置
+  servlet:
+    multipart:
+      # 单个文件最大值
+      max-file-size: 2MB
+      # 上传文件最大值
+      max-request-size: 20MB
+
 
 #mybatis
 mybatis:
