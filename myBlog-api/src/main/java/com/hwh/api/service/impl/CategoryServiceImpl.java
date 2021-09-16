@@ -47,4 +47,9 @@ public class CategoryServiceImpl implements CategoryService {
         return copyList(categoryMapper.findAll());
     }
 
+    @Override
+    public List<CategoryVo> findAllDetail() {
+        return copyList(categoryMapper.selectList());
+    }
+
 }

@@ -66,4 +66,9 @@ public class TagServiceImpl implements TagService {
         return copyList(tagMapper.findAll());
     }
 
+    @Override
+    public List<TagVo> findAllDetail() {
+        return copyList(tagMapper.findAllDetail());
+    }
+
 }

@@ -1,6 +1,8 @@
 package com.hwh.api.service;
 
+import com.hwh.common.domain.enums.CodeEnum;
 import com.hwh.common.domain.vo.CategoryVo;
+import com.hwh.common.util.Result;
 
 import java.util.List;
 
@@ -23,4 +25,10 @@ public interface CategoryService {
      * @return 所有类别列表
      * */
     List<CategoryVo> findAll();
+
+    /**
+     * 获取所有类别细节
+     * @return 所有类别细节列表
+     * */
+    List<CategoryVo> findAllDetail();
 }

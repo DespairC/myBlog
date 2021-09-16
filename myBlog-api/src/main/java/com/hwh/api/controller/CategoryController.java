@@ -20,8 +20,22 @@ public class CategoryController {
     @Autowired
     private CategoryService categoryService;
 
+
+    /**
+     * 获取所有类别
+     * @return 所有类别（不包括细节）
+     * */
     @GetMapping
     public Result listCategory(){
         return Result.success(true, CodeEnum.SUCCESS, categoryService.findAll());
+    }
+
+    /**
+     * 获取所有类别细节
+     *
+     * */
+    @GetMapping("/detail")
+    public Result findAllDetail(){
+        return Result.success(true, CodeEnum.SUCCESS, categoryService.findAllDetail());
     }
 }

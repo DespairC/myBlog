@@ -41,5 +41,11 @@ public interface TagMapper {
      * */
     List<Tag> findAll();
 
+    /**
+     * 获得所有标签细节
+     * @return 所有标签集合细节
+     * */
+    List<Tag> findAllDetail();
+
 
 }

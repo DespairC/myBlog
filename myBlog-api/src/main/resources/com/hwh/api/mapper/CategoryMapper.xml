@@ -15,8 +15,16 @@
         select id
              ,avatar
              ,category_name
+        from category
+    </select>
+
+    <select id="selectList" resultType="com.hwh.common.domain.dto.Category">
+        select id
+             ,avatar
+             ,category_name
              ,description
         from category
     </select>
+
 
 </mapper>

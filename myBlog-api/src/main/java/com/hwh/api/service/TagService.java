@@ -30,4 +30,10 @@ public interface TagService {
      * @return 所有标签集合
      * */
     List<TagVo> findAll();
+
+    /**
+     * 获得所有标签细节
+     * @return 所有标签集合细节
+     * */
+    List<TagVo> findAllDetail();
 }

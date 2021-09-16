@@ -35,5 +35,10 @@
         from tag
     </select>
 
+    <select id="findAllDetail" resultType="com.hwh.common.domain.dto.Tag">
+        select id, tag_name, avatar
+        from tag
+    </select>
+
 
 </mapper>

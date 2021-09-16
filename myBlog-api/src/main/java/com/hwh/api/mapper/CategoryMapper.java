@@ -27,4 +27,9 @@ public interface CategoryMapper {
      * */
     List<Category> findAll();
 
+    /**
+     * 获取所有类别细节
+     * */
+    List<Category> selectList();
+
 }

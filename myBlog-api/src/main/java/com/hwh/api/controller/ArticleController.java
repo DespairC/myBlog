@@ -82,6 +82,4 @@ public class ArticleController {
     public Result publish(@RequestBody ArticleParam articleParam){
         return Result.success(true, CodeEnum.SUCCESS, articleService.publishArticle(articleParam));
     }
-
-
 }
