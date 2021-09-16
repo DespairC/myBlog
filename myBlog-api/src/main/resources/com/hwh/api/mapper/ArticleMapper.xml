@@ -38,10 +38,23 @@
     </update>
 
 
-    <select id="getArticle" resultType="com.hwh.common.domain.dto.Article">
+    <select id="getArticle" parameterType="com.hwh.common.domain.vo.param.PageParam" resultType="com.hwh.common.domain.dto.Article">
         select id, comment_counts, create_date, summary, title, view_counts
             ,weight, author_id, body_id, category_id
         from article
+        <where>
+            1 = 1
+            <if test="categoryId != null">
+                and category_id = #{categoryId}
+            </if>
+            <if test="tagId != null">
+                and id in (select article_id from article_tag where tag_id = #{tagId})
+            </if>
+            <if test="year != null and year.length > 0 and month != null and month.length>0">
+                and (FROM_UNIXTIME( create_date / 1000 , '%Y')) = #{year}
+                and (FROM_UNIXTIME( create_date / 1000 , '%m')) = #{month}
+            </if>
+        </where>
         order by weight DESC, create_date DESC
         limit #{page}, #{pageSize}
     </select>

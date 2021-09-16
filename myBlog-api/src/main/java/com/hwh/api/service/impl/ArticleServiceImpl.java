@@ -80,7 +80,7 @@ public class ArticleServiceImpl implements ArticleService {
         }
         //类别
         if (idCategory){
-            articleVo.setCategoryVo(categoryService.findCategoryById(article.getId()));
+            articleVo.setCategoryVo(categoryService.findCategoryById(article.getCategoryId()));
         }
         return articleVo;
     }
@@ -102,8 +102,8 @@ public class ArticleServiceImpl implements ArticleService {
         if(pageParam == null){
             throw new ErrorException(CodeEnum.NULL_PARAM);
         }
-        return copyList(articleMapper.getArticle(pageParam.getPage(), pageParam.getPageSize()),
-                true , false, true, false);
+        return copyList(articleMapper.getArticle(pageParam),
+                true , false, true, true);
     }
 
     @Override

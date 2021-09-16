@@ -15,8 +15,24 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-@JsonInclude(JsonInclude.Include.NON_NULL)
 public class PageParam {
     private int page;
+
     private int pageSize;
+
+    private Long categoryId;
+
+    private Long tagId;
+
+    private String year;
+
+    private String month;
+
+    public String getMonth() {
+        // 月份不足位填充
+        if(this.month != null && this.month.length() == 1){
+            return "0" + month;
+        }
+        return month;
+    }
 }
