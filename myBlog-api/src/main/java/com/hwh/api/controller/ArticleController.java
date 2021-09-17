@@ -1,6 +1,7 @@
 package com.hwh.api.controller;
 
 import com.hwh.api.service.ArticleService;
+import com.hwh.common.cache.Cache;
 import com.hwh.common.domain.enums.CodeEnum;
 import com.hwh.common.domain.vo.param.ArticleParam;
 import com.hwh.common.domain.vo.param.PageParam;
@@ -39,6 +40,7 @@ public class ArticleController {
      * @return 热门文章的集合
      * */
     @GetMapping("/hot")
+    @Cache
     public Result hot(){
         int size = 3;
         return Result.success(true, CodeEnum.SUCCESS, articleService.getHotArticle(size));
