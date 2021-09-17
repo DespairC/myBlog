@@ -20,7 +20,7 @@ public class CommentVo {
     private String content;
     private String createDate;
     private SysUserVo author;
-    private List<CommentVo> children;
+    private List<CommentVo> childrens;
     private SysUserVo toUser;
     private Integer level;
 }

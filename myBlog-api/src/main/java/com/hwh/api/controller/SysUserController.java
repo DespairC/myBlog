@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @description
  */
 @RestController
-@RequestMapping("/user/")
+@RequestMapping("/users/")
 public class SysUserController {
     @Autowired
     private SysUserService sysUserService;

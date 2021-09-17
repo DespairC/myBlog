@@ -70,7 +70,7 @@ public class ArticleServiceImpl implements ArticleService {
         }
         //内容
         if (isBody){
-            articleVo.setArticleBody(articleBodyMapper.getArticleBodyById(article.getId()));
+            articleVo.setBody(articleBodyMapper.getArticleBodyById(article.getId()));
         }
         //创建日期
         articleVo.setCreateDate(TimeUtil.longToDate(article.getCreateDate()));
@@ -80,7 +80,7 @@ public class ArticleServiceImpl implements ArticleService {
         }
         //类别
         if (idCategory){
-            articleVo.setCategoryVo(categoryService.findCategoryById(article.getCategoryId()));
+            articleVo.setCategory(categoryService.findCategoryById(article.getCategoryId()));
         }
         return articleVo;
     }
@@ -102,6 +102,7 @@ public class ArticleServiceImpl implements ArticleService {
         if(pageParam == null){
             throw new ErrorException(CodeEnum.NULL_PARAM);
         }
+        pageParam.setPage(pageParam.getPage() - 1);
         return copyList(articleMapper.getArticle(pageParam),
                 true , false, true, true);
     }

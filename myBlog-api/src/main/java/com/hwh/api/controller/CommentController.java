@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
  */
 
 @RestController
-@RequestMapping("/comment/")
+@RequestMapping("/comments/")
 public class CommentController {
 
     @Autowired

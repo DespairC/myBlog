@@ -37,7 +37,7 @@ public class ArticleVo {
     /**
      * 文章内容
      * */
-    private ArticleBody articleBody;
+    private ArticleBody body;
     /**
      * 标签集合
      * */
@@ -45,7 +45,7 @@ public class ArticleVo {
     /**
      * 类别
      * */
-    private CategoryVo categoryVo;
+    private CategoryVo category;
 
 
 }

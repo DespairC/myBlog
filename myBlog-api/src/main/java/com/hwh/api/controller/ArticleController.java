@@ -39,7 +39,7 @@ public class ArticleController {
      * 获取热门文章
      * @return 热门文章的集合
      * */
-    @GetMapping("/hot")
+    @PostMapping("/hot")
     @Cache
     public Result hot(){
         int size = 3;
@@ -50,7 +50,7 @@ public class ArticleController {
      * 获取最新文章
      * @return 最新文章的集合
      * */
-    @GetMapping("/new")
+    @PostMapping("/new")
     public Result getNew(){
         int size = 5;
         return Result.success(true, CodeEnum.SUCCESS, articleService.getNewArticle(size));
@@ -70,7 +70,7 @@ public class ArticleController {
      * @param id 文章id
      * @return 文章具体信息
      * */
-    @GetMapping("/view/{id}")
+    @PostMapping("/view/{id}")
     public Result findArticleById(@PathVariable("id") Long id){
         return Result.success(true, CodeEnum.SUCCESS, articleService.findArticleById(id));
     }

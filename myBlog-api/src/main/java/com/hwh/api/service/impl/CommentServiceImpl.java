@@ -10,6 +10,7 @@ import com.hwh.common.domain.vo.CommentVo;
 import com.hwh.common.domain.vo.SysUserVo;
 import com.hwh.common.util.Result;
 import com.hwh.common.util.TimeUtil;
+import com.hwh.common.util.UserThreadLocal;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -47,7 +48,7 @@ public class CommentServiceImpl implements CommentService {
         SysUserVo sysUserVo = sysUserService.findUserById(comment.getAuthorId());
         commentVo.setAuthor(sysUserVo);
         //子评论集合
-        commentVo.setChildren(findChildren(comment.getId()));
+        commentVo.setChildrens(findChildren(comment.getId()));
         //评论对象
         if(comment.getLevel() > 1){
             commentVo.setToUser(sysUserService.findUserById(comment.getToUid()));
@@ -77,7 +78,7 @@ public class CommentServiceImpl implements CommentService {
         Comment comment = new Comment();
         comment.setArticleId(commentParam.getArticleId());
         comment.setContent(commentParam.getContent());
-        comment.setAuthorId(commentParam.getArticleId());
+        comment.setAuthorId(UserThreadLocal.get().getId());
         Long parent = commentParam.getParent();
         comment.setParentId(parent == null? 0 : parent);
         if(parent == null || parent == 0){
