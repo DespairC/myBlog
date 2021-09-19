@@ -13,6 +13,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
  */
 @SpringBootApplication(scanBasePackages =
         {
+                "com.hwh.admin",
                 "com.hwh.api",
                 "com.hwh.framework",
                 "com.hwh.common"

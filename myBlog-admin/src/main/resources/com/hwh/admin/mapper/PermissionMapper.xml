@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--MyBatis配置文件-->
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hwh.admin.mapper.PermissionMapper">
+
+    <insert id="add" parameterType="com.hwh.common.domain.dto.Permission" useGeneratedKeys="true" keyProperty="id">
+        insert into permission(name, path, description)
+        values (#{name}, #{path}, #{description})
+    </insert>
+
+    <update id="update" parameterType="com.hwh.common.domain.dto.Permission">
+        update permission
+        set name = #{name}, path = #{path},
+            description = #{description}
+        where id = #{id}
+    </update>
+
+    <delete id="delete">
+        delete from permission where id = #{id}
+    </delete>
+
+    <select id="findPermissionById" resultType="com.hwh.common.domain.dto.Permission">
+        select id, name, path, description
+        from permission
+        where id = #{id}
+    </select>
+
+    <select id="permissionList" parameterType="com.hwh.common.domain.vo.param.AdminPageParam" resultType="com.hwh.common.domain.dto.Permission">
+        select id, name, path, description
+        from permission
+        limit #{currentPage}, #{pageSize}
+    </select>
+</mapper>
